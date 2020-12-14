@@ -7,20 +7,28 @@ Dark green: #28b485
 
 */
 
-* {
+*,
+::after,
+::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: inherit;
+}
+
+html {
+    /* Setting the root font size, (10/16=0.625 => )10px is easy to calculate to rem. Using percentages allows the user to change the font size */
+    font-size: 62.5%;
 }
 
 /* setting up the font styling in body, because it get's inherited to other components */
 body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
-    font-size: 16px;
     line-height: 1.7;
     color: #777777;
-    /* padding: 30px; */
+    padding: 3rem;
+
+    box-sizing: border-box;
 }
 
 .header {
@@ -37,33 +45,32 @@ body {
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
 }
 
-.logo-box {
+.header__logo-box {
     position: absolute;
-    top: 40px;
-    left: 40px;
+    top: 4rem;
+    left: 4rem;
 }
 
-.logo {
-    height: 2.2em;
-    /* 2.2em is almost the same as 35px */
+.header__logo {
+    height: 3.5rem;
     transition: scale 0.1s;
 }
 
-.logo:hover {
+.header__logo:hover {
     scale: 1.1;
 }
 
-.shadow {
+.header__logo--shadow {
     transition: all 0.1s;
 }
 
-.shadow:hover {
+.header__logo--shadow:hover {
     -webkit-filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .4));
     filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .4));
     /* Similar syntax to box-shadow */
 }
 
-.text-box {
+.header__text-box {
     /* Great way to position something in the middle, just put the top also to 50% */
     position: absolute;
     top: 40%;
@@ -78,23 +85,24 @@ body {
 
     /* a fix for possible animation shake */
     backface-visibility: hidden;
-    margin-bottom: 3.75em;
+
+    margin-bottom: 6rem;
 }
 
-.heading-primary-main {
+.heading-primary--main {
     display: block;
-    font-size: 3.75em;
+    font-size: 6rem;
     font-weight: 400;
-    letter-spacing: 35px;
+    letter-spacing: 3.5rem;
 
     animation: moveInLeft 0.7s ease-out;
 }
 
-.heading-primary-sub {
+.heading-primary--sub {
     display: block;
-    font-size: 1.25em;
+    font-size: 2rem;
     font-weight: 700;
-    letter-spacing: 21px;
+    letter-spacing: 1.75rem;
 
     animation: moveInRight 0.7s ease-out;
 }
@@ -107,11 +115,11 @@ ANIMATIONS
     /* For browser performance is best to only animate two things, like in here opacity and transform */
     0% {
         opacity: 0;
-        transform: translateX(-100px);
+        transform: translateX(-10rem);
     }
 
     80% {
-        transform: translateX(10px);
+        transform: translateX(1rem);
     }
 
     100% {
@@ -123,11 +131,11 @@ ANIMATIONS
 @keyframes moveInRight {
     0% {
         opacity: 0;
-        transform: translateX(100px);
+        transform: translateX(10rem);
     }
 
     80% {
-        transform: translateX(-10px);
+        transform: translateX(-1rem);
     }
 
     100% {
@@ -139,11 +147,11 @@ ANIMATIONS
 @keyframes moveInBottom {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
 
     80% {
-        transform: translateY(-3px);
+        transform: translateY(-0.3rem);
     }
 
     100% {
@@ -156,26 +164,27 @@ ANIMATIONS
 .btn:visited {
     text-transform: uppercase;
     text-decoration: none;
-    padding: 1em 2.5em;
+    padding: 1.5rem 4rem;
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 10rem;
     transition: all .1s;
     position: relative;
+    font-size: 1.6rem;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
     /* box shadow takes X, Y, Blur amount, shadow color */
 }
 
 /* animating the box shadow from really blurry to less blurry makes it seem to move towards the page */
 .btn:active {
     transform: translateY(-1px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.3);
 }
 
-.btn-white {
+.btn--white {
     background-color: #fff;
     color: #777;
 }
@@ -186,7 +195,7 @@ ANIMATIONS
     display: inline-block;
     height: 100%;
     width: 100%;
-    border-radius: 100px;
+    border-radius: 10rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -194,7 +203,7 @@ ANIMATIONS
     transition: all .4s;
 }
 
-.btn-white::after {
+.btn--white::after {
     background-color: #fff;
 }
 
@@ -203,7 +212,7 @@ ANIMATIONS
     opacity: 0;
 }
 
-.btn-animated {
+.btn--animated {
     animation: moveInBottom 0.5s ease-out 0.5s;
     animation-fill-mode: backwards;
     /* Animation fill mode backwards will apply the animation's 0% values before the animation starts*/
